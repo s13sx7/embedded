@@ -26,7 +26,7 @@ int main(void)
         printf("LED is %s\n",
                led_sim_get_state() ? "ON" : "OFF");
 
-        delay_ms(100);
+        delay_ms(500);
     }
 
     led_sim_off();
