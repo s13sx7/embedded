@@ -21,7 +21,7 @@ int main(void)
 
     for (int i = 0; i < 10; ++i)
     {
-        led_sim_toggle();
+        led_sim_set((uint32_t)i%2);
 
         printf("LED is %s\n",
                led_sim_get_state() ? "ON" : "OFF");

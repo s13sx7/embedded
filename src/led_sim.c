@@ -40,3 +40,7 @@ uint32_t led_sim_get_state(void)
 {
     return (simulated_port & LED_PIN_MASK) ? 1u : 0u;
 }
+
+void led_sim_set(uint32_t on){
+	on == 0?led_sim_off():led_sim_on();
+}
