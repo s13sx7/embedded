@@ -14,5 +14,4 @@ void led_sim_off(void);
 void led_sim_toggle(void);
 uint32_t led_sim_get_state(void);
 void led_sim_set(uint32_t on);
-
 #endif /* LED_SIM_H */
