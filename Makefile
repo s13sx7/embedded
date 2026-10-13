@@ -26,4 +26,6 @@ rebuild: clean all
 
 .PHONY: all run clean rebuild
 
+hello:
+	@echo "Hello from Makefile"
 -include $(DEP)
