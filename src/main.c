@@ -4,7 +4,7 @@ struct rcc {
 			 APB1ENR, BDCR, CSR;
 };
 #define RCC ((struct rcc*) (0x40021000))
-#define RCC_GPIO_C_BIT 4
+#define RCC_GPIO_B_BIT 3
 
 struct gpio{
 	volatile uint32_t CRL, CRH, IDR, ODR, BSRR, BRR, LCKR;
@@ -28,18 +28,25 @@ int main(void){
 	gpio_b->CRL |= (MODE_INPUT_PULL_UP << (BUTTON_PIN*4));
 	//gpio_b->ODR &= ~(1u << BUTTON_PIN_ODR); не нужно все равно 1
 	gpio_b->ODR |= (1u << BUTTON_PIN); //PULL UP
-	gpio_b->CRH &= ~(0xF << (LED_PIN*4));
-	gpio_b->CRH |= (MODE
-
-
+	gpio_b->CRH &= ~(0xF << ((LED_PIN-8)*4));
+	gpio_b->CRH |= (MODE_OUTPUT_2MHZ << ((LED_PIN-8)*4));
+	uint32_t last_state = 1;
 	while(1){
-		gpio_c->BSRR = BIT(13);
-		for (volatile uint32_t i = 0; i < 500000; i++) {
-		   __asm__("nop");  // no-operation, один такт процессора
+		uint32_t current_state = (gpio_b->IDR & BIT(BUTTON_PIN))?1:0;
+		if (current_state != last_state){
+			for (volatile uint32_t i = 0; i < 1000000; ++i){
+				__asm__("nop");
+			}
 		}
-		gpio_c->BSRR = BIT(13+16);
-		for (volatile uint32_t i = 0; i < 500000; i++) {
-			__asm__("nop");  // no-operation, один такт процессора
+		
+		uint32_t current_state = (gpio_b->IDR & BIT(BUTTON_PIN))?1:0;
+		if (current_state != last_state){
+			last_state = current_state;
+			if (current_state == 0){
+				gpio_b->BSRR = BIT(LED_PIN);
+			}else {
+				gpio_b->BSRR = BIT(LED_PIN+16);   // Выключить
+			}
 		}
 	}
 }
