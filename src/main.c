@@ -32,14 +32,15 @@ int main(void){
 	gpio_b->CRH |= (MODE_OUTPUT_2MHZ << ((LED_PIN-8)*4));
 	uint32_t last_state = 1;
 	while(1){
+#if 1
 		uint32_t current_state = (gpio_b->IDR & BIT(BUTTON_PIN))?1:0;
 		if (current_state != last_state){
-			for (volatile uint32_t i = 0; i < 1000000; ++i){
+			for (volatile uint32_t i = 0; i < 60000; ++i){
 				__asm__("nop");
 			}
 		}
 		
-		uint32_t current_state = (gpio_b->IDR & BIT(BUTTON_PIN))?1:0;
+		current_state = (gpio_b->IDR & BIT(BUTTON_PIN))?1:0;
 		if (current_state != last_state){
 			last_state = current_state;
 			if (current_state == 0){
@@ -50,3 +51,14 @@ int main(void){
 		}
 	}
 }
+#endif
+#if 0
+		uint32_t current_state = (gpio_b->IDR & BIT(BUTTON_PIN))?1:0;
+		if (current_state == 0){
+				gpio_b->BSRR = BIT(LED_PIN);
+			}else {
+				gpio_b->BSRR = BIT(LED_PIN+16);   // Выключить
+			}
+	}
+}
+#endif
