@@ -65,12 +65,12 @@ int main(void){
 	 * */
 
 	RCC->APB2ENR |= BIT(RCC_AFIO_BIT);
-	AFIO->EXTICR2 |= BIT(AFIO_EXTICR2_PORT_B);
+	AFIO->EXTICR2 |= (AFIO_EXTICR2_PORT_B << 8);
 	
 	EXTI->IMR |= BIT(EXTI_LINE_SIX); // прерывание на 6 линии
 	EXTI->FTSR |=BIT(EXTI_LINE_SIX); // На падение напряжения
 
-	NVIC_ISER|= BIT(EXTI9_5_INTERRUPT);
+	*NVIC_ISER(0) |= BIT(EXTI9_5_INTERRUPT);
 
 	uint32_t last_state = 1;
 	while(1){

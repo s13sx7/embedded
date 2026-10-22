@@ -131,3 +131,75 @@ Default_Handler:
 
     .weak SysTick_Handler
     .thumb_set SysTick_Handler, Default_Handler
+
+	.weak WWDG_IRQHandler
+    .thumb_set WWDG_IRQHandler, Default_Handler
+
+    .weak PVD_IRQHandler
+    .thumb_set PVD_IRQHandler, Default_Handler
+
+    .weak TAMPER_IRQHandler
+    .thumb_set TAMPER_IRQHandler, Default_Handler
+
+    .weak RTC_IRQHandler
+    .thumb_set RTC_IRQHandler, Default_Handler
+
+    .weak FLASH_IRQHandler
+    .thumb_set FLASH_IRQHandler, Default_Handler
+
+    .weak RCC_IRQHandler
+    .thumb_set RCC_IRQHandler, Default_Handler
+
+    .weak EXTI0_IRQHandler
+    .thumb_set EXTI0_IRQHandler, Default_Handler
+
+    .weak EXTI1_IRQHandler
+    .thumb_set EXTI1_IRQHandler, Default_Handler
+
+    .weak EXTI2_IRQHandler
+    .thumb_set EXTI2_IRQHandler, Default_Handler
+
+    .weak EXTI3_IRQHandler
+    .thumb_set EXTI3_IRQHandler, Default_Handler
+
+    .weak EXTI4_IRQHandler
+    .thumb_set EXTI4_IRQHandler, Default_Handler
+
+    .weak DMA1_Channel1_IRQHandler
+    .thumb_set DMA1_Channel1_IRQHandler, Default_Handler
+
+    .weak DMA1_Channel2_IRQHandler
+    .thumb_set DMA1_Channel2_IRQHandler, Default_Handler
+
+    .weak DMA1_Channel3_IRQHandler
+    .thumb_set DMA1_Channel3_IRQHandler, Default_Handler
+
+    .weak DMA1_Channel4_IRQHandler
+    .thumb_set DMA1_Channel4_IRQHandler, Default_Handler
+
+    .weak DMA1_Channel5_IRQHandler
+    .thumb_set DMA1_Channel5_IRQHandler, Default_Handler
+
+    .weak DMA1_Channel6_IRQHandler
+    .thumb_set DMA1_Channel6_IRQHandler, Default_Handler
+
+    .weak DMA1_Channel7_IRQHandler
+    .thumb_set DMA1_Channel7_IRQHandler, Default_Handler
+
+    .weak ADC1_2_IRQHandler
+    .thumb_set ADC1_2_IRQHandler, Default_Handler
+
+    .weak USB_HP_CAN1_TX_IRQHandler
+    .thumb_set USB_HP_CAN1_TX_IRQHandler, Default_Handler
+
+    .weak USB_LP_CAN1_RX0_IRQHandler
+    .thumb_set USB_LP_CAN1_RX0_IRQHandler, Default_Handler
+
+    .weak CAN1_RX1_IRQHandler
+    .thumb_set CAN1_RX1_IRQHandler, Default_Handler
+
+    .weak CAN1_SCE_IRQHandler
+    .thumb_set CAN1_SCE_IRQHandler, Default_Handler
+
+    .weak EXTI9_5_IRQHandler
+    .thumb_set EXTI9_5_IRQHandler, Default_Handler
