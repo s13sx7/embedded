@@ -28,8 +28,31 @@ g_pfnVectors:
     .word 0
     .word PendSV_Handler
     .word SysTick_Handler
-    /* Для STM32F103 здесь должно быть ещё много векторов периферии, 
-       но для базового blink нам хватит этого минимума Cortex-M3 */
+	/* Внешние прерывания (External Interrupts) */
+	.word WWDG_IRQHandler       /* 0x40: IRQ 0  - Сторожевой таймер */
+	.word PVD_IRQHandler        /* 0x44: IRQ 1  - Детектор падения напряжения */
+	.word TAMP_STAMP_IRQHandler /* 0x48: IRQ 2  - Вторжение и метка времени */
+	.word RTC_WKUP_IRQHandler   /* 0x4C: IRQ 3  - Пробуждение от RTC */
+	.word FLASH_IRQHandler      /* 0x50: IRQ 4  - Прерывание Flash-памяти */
+	.word RCC_IRQHandler        /* 0x54: IRQ 5  - Тактирование и сброс */
+    .word EXTI0_IRQHandler      /* 0x58: IRQ 6  - Внешняя линия 0 */
+    .word EXTI1_IRQHandler      /* 0x5C: IRQ 7  - Внешняя линия 1 */
+    .word EXTI2_IRQHandler      /* 0x60: IRQ 8  - Внешняя линия 2 */
+    .word EXTI3_IRQHandler      /* 0x64: IRQ 9  - Внешняя линия 3 */
+    .word EXTI4_IRQHandler      /* 0x68: IRQ 10 - Внешняя линия 4 */
+    .word DMA1_Stream0_IRQHandler /* 0x6C: IRQ 11 - DMA1 Поток 0 */
+    .word DMA1_Stream1_IRQHandler /* 0x70: IRQ 12 - DMA1 Поток 1 */
+    .word DMA1_Stream2_IRQHandler /* 0x74: IRQ 13 - DMA1 Поток 2 */
+    .word DMA1_Stream3_IRQHandler /* 0x78: IRQ 14 - DMA1 Поток 3 */
+    .word DMA1_Stream4_IRQHandler /* 0x7C: IRQ 15 - DMA1 Поток 4 */
+    .word DMA1_Stream5_IRQHandler /* 0x80: IRQ 16 - DMA1 Поток 5 */
+    .word DMA1_Stream6_IRQHandler /* 0x84: IRQ 17 - DMA1 Поток 6 */
+    .word ADC_IRQHandler        /* 0x88: IRQ 18 - АЦП */
+    .word CAN1_TX_IRQHandler    /* 0x8C: IRQ 19 - CAN1 Передача */
+    .word CAN1_RX0_IRQHandler   /* 0x90: IRQ 20 - CAN1 Прием FIFO 0 */
+    .word CAN1_RX1_IRQHandler   /* 0x94: IRQ 21 - CAN1 Прием FIFO 1 */
+    .word CAN1_SCE_IRQHandler   /* 0x98: IRQ 22 - CAN1 Ошибка статуса */
+    .word EXTI9_5_IRQHandler    /* 0x9C: IRQ 23 - Внешние линии [9:5] */
 
     .size g_pfnVectors, .-g_pfnVectors
 
