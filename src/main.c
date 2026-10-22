@@ -72,35 +72,20 @@ int main(void){
 
 	*NVIC_ISER(0) |= BIT(EXTI9_5_INTERRUPT);
 
-	uint32_t last_state = 1;
 	while(1){
-#if 1
-		uint32_t current_state = (gpio_b->IDR & BIT(BUTTON_PIN))?1:0;
-		if (current_state != last_state){
-			for (volatile uint32_t i = 0; i < 60000; ++i){
-				__asm__("nop");
-			}
-		}
-		
-		current_state = (gpio_b->IDR & BIT(BUTTON_PIN))?1:0;
-		if (current_state != last_state){
-			last_state = current_state;
-			if (current_state == 0){
-				gpio_b->BSRR = BIT(LED_PIN);
-			}else {
-				gpio_b->BSRR = BIT(LED_PIN+16);   // Выключить
-			}
+		__asm__("wfi");	
+	}
+}
+
+
+void EXTI9_5_IRQHandler(void) {
+	if (EXTI->PR & BIT(EXTI_LINE_SIX)){
+		EXTI->PR = BIT(EXTI_LINE_SIX); // обязательно выключаем
+		struct gpio *gpio_b = GPIO('B');
+		if (gpio_b->IDR & BIT(LED_PIN)){
+			gpio_b->BRR = BIT(LED_PIN);
+		} else {
+			gpio_b->BSRR = BIT(LED_PIN+16);
 		}
 	}
 }
-#endif
-#if 0
-		uint32_t current_state = (gpio_b->IDR & BIT(BUTTON_PIN))?1:0;
-		if (current_state == 0){
-				gpio_b->BSRR = BIT(LED_PIN);
-			}else {
-				gpio_b->BSRR = BIT(LED_PIN+16);   // Выключить
-			}
-	}
-}
-#endif
