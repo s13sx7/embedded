@@ -78,12 +78,14 @@ int main(void){
 }
 
 
+static uint32_t led_state = 0;
 void EXTI9_5_IRQHandler(void) {
 	if (EXTI->PR & BIT(EXTI_LINE_SIX)){
 		EXTI->PR = BIT(EXTI_LINE_SIX); // обязательно выключаем
 		struct gpio *gpio_b = GPIO('B');
-		if (gpio_b->IDR & BIT(LED_PIN)){
-			gpio_b->BRR = BIT(LED_PIN);
+		led_state != led_state;
+		if (led_state){
+			gpio_b->BSRR = BIT(LED_PIN);
 		} else {
 			gpio_b->BSRR = BIT(LED_PIN+16);
 		}
