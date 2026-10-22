@@ -31,30 +31,29 @@ g_pfnVectors:
 	/* Внешние прерывания (External Interrupts) */
 	.word WWDG_IRQHandler       /* 0x40: IRQ 0  - Сторожевой таймер */
 	.word PVD_IRQHandler        /* 0x44: IRQ 1  - Детектор падения напряжения */
-	.word TAMP_STAMP_IRQHandler /* 0x48: IRQ 2  - Вторжение и метка времени */
-	.word RTC_WKUP_IRQHandler   /* 0x4C: IRQ 3  - Пробуждение от RTC */
+	.word TAMPER_IRQHandler     /* 0x48: IRQ 2  - Вторжение (Tamper) */
+	.word RTC_IRQHandler        /* 0x4C: IRQ 3  - Часы реального времени */
 	.word FLASH_IRQHandler      /* 0x50: IRQ 4  - Прерывание Flash-памяти */
 	.word RCC_IRQHandler        /* 0x54: IRQ 5  - Тактирование и сброс */
-    .word EXTI0_IRQHandler      /* 0x58: IRQ 6  - Внешняя линия 0 */
-    .word EXTI1_IRQHandler      /* 0x5C: IRQ 7  - Внешняя линия 1 */
-    .word EXTI2_IRQHandler      /* 0x60: IRQ 8  - Внешняя линия 2 */
-    .word EXTI3_IRQHandler      /* 0x64: IRQ 9  - Внешняя линия 3 */
-    .word EXTI4_IRQHandler      /* 0x68: IRQ 10 - Внешняя линия 4 */
-    .word DMA1_Stream0_IRQHandler /* 0x6C: IRQ 11 - DMA1 Поток 0 */
-    .word DMA1_Stream1_IRQHandler /* 0x70: IRQ 12 - DMA1 Поток 1 */
-    .word DMA1_Stream2_IRQHandler /* 0x74: IRQ 13 - DMA1 Поток 2 */
-    .word DMA1_Stream3_IRQHandler /* 0x78: IRQ 14 - DMA1 Поток 3 */
-    .word DMA1_Stream4_IRQHandler /* 0x7C: IRQ 15 - DMA1 Поток 4 */
-    .word DMA1_Stream5_IRQHandler /* 0x80: IRQ 16 - DMA1 Поток 5 */
-    .word DMA1_Stream6_IRQHandler /* 0x84: IRQ 17 - DMA1 Поток 6 */
-    .word ADC_IRQHandler        /* 0x88: IRQ 18 - АЦП */
-    .word CAN1_TX_IRQHandler    /* 0x8C: IRQ 19 - CAN1 Передача */
-    .word CAN1_RX0_IRQHandler   /* 0x90: IRQ 20 - CAN1 Прием FIFO 0 */
-    .word CAN1_RX1_IRQHandler   /* 0x94: IRQ 21 - CAN1 Прием FIFO 1 */
-    .word CAN1_SCE_IRQHandler   /* 0x98: IRQ 22 - CAN1 Ошибка статуса */
-    .word EXTI9_5_IRQHandler    /* 0x9C: IRQ 23 - Внешние линии [9:5] */
-
-    .size g_pfnVectors, .-g_pfnVectors
+	.word EXTI0_IRQHandler      /* 0x58: IRQ 6  - Внешняя линия 0 */
+	.word EXTI1_IRQHandler      /* 0x5C: IRQ 7  - Внешняя линия 1 */
+	.word EXTI2_IRQHandler      /* 0x60: IRQ 8  - Внешняя линия 2 */
+	.word EXTI3_IRQHandler      /* 0x64: IRQ 9  - Внешняя линия 3 */
+	.word EXTI4_IRQHandler      /* 0x68: IRQ 10 - Внешняя линия 4 */
+	.word DMA1_Channel1_IRQHandler /* 0x6C: IRQ 11 - DMA1 Канал 1 */
+	.word DMA1_Channel2_IRQHandler /* 0x70: IRQ 12 - DMA1 Канал 2 */
+	.word DMA1_Channel3_IRQHandler /* 0x74: IRQ 13 - DMA1 Канал 3 */
+	.word DMA1_Channel4_IRQHandler /* 0x78: IRQ 14 - DMA1 Канал 4 */
+	.word DMA1_Channel5_IRQHandler /* 0x7C: IRQ 15 - DMA1 Канал 5 */
+	.word DMA1_Channel6_IRQHandler /* 0x80: IRQ 16 - DMA1 Канал 6 */
+	.word DMA1_Channel7_IRQHandler /* 0x84: IRQ 17 - DMA1 Канал 7 */
+	.word ADC1_2_IRQHandler     /* 0x88: IRQ 18 - АЦП1 и АЦП2 */
+	.word USB_HP_CAN1_TX_IRQHandler /* 0x8C: IRQ 19 - USB HP / CAN1 TX */
+	.word USB_LP_CAN1_RX0_IRQHandler /* 0x90: IRQ 20 - USB LP / CAN1 RX0 */
+	.word CAN1_RX1_IRQHandler   /* 0x94: IRQ 21 - CAN1 RX1 */
+	.word CAN1_SCE_IRQHandler   /* 0x98: IRQ 22 - CAN1 Ошибка статуса */
+	.word EXTI9_5_IRQHandler    /* 0x9C: IRQ 23 - Внешние линии [9:5] */
+	.size g_pfnVectors, .-g_pfnVectors
 
     /* =========================================
      * 2. КОД ЗАПУСКА (Reset_Handler)
