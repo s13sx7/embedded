@@ -1,45 +1,7 @@
 #include <stdint.h>
+#include "hardware.h"
 #include "clock.h"
-struct rcc{
-	volatile uint32_t CR, CFGR, CIR, APB2RSTR, APB1RSTR, AHBENR,
-			 APB2ENR, APB1ENR, BDCR, CSR, AHBSTR, CFGR2;
-};
-#define RCC ((struct rcc *) 0x40021000)
 
-struct flash{
-	volatile uint32_t ACR;
-};
-#define FLASH ((struct flash*) 0x40022000)
-
-#define BIT(X) (1u << (X))
-#define BITS(X,Y) ((X) << (Y))
-
-#define RCC_CR_HSE_ON 16
-#define RCC_CR_HSERDY 17
-
-#define FLASH_ACR_LATENCY 0
-#define FLASH_ACR_LATENCY_72MHZ 0b010
-
-#define FLASH_ACR_PRFTBE 4
-
-#define RCC_CFGR_HPRE 4
-
-#define RCC_CFGR_PPRE1 8
-#define RCC_CFGR_PPRE1_2DIV 0b100
-
-#define RCC_CFGR_PPRE2 11
-
-#define RCC_CFGR_PLLSRC 16
-
-#define RCC_CFGR_PLLMUL 18
-#define RCC_CFGR_PLLMUL_9 0b0111
-
-#define RCC_CFGR_SW 0
-#define RCC_CFGR_SW_PLL 0b10
-
-#define RCC_CFGR_SWS 0b10
-#define RCC_CR_PLLON 24
-#define RCC_CR_PLLRDY 25
 int SystemClock_Config(void){
 	int check = 1;
 	/*enable HSE*/
